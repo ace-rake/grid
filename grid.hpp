@@ -96,6 +96,9 @@ class	grid
 
 		// Transformers
 		void	resize(size_t, size_t);
+		void	rotate90(bool clockWise = true);
+		void	transpose();
+		
 
 	private:
 		T **		_grid;
