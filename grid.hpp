@@ -1,9 +1,9 @@
 #ifndef GRID_HPP
 # define GRID_HPP
+
 #include <cstddef>
-#include <iostream>
-#include <ostream>
 #include <utility>
+#include <string>
 
 // Custom class: grid
 template <typename T>
@@ -11,7 +11,7 @@ class	grid
 {
 	public:
 		// Constructor
-		grid	(int, int);
+		grid	(size_t, size_t);
 
 		// Destructor
 		~grid	(void);
@@ -35,6 +35,7 @@ class	grid
 
 		// Operator overloads
 		void	operator=(T other);
+		void	operator=(const grid<T> & other);
 
 		// Iterator
 		class iterator
@@ -89,183 +90,33 @@ class	grid
 
 	private:
 		T **		_grid;
-		const size_t	_size_y;
-		const size_t	_size_x;
+		size_t	_size_y;
+		size_t	_size_x;
 
 		bool		_outOfBounds(size_t, size_t)const;
 		bool		_outOfXBounds(size_t)const;
 		bool		_outOfYBounds(size_t)const;
 		void		_throwOutOfBounds()const;
 
+		void		_freeGrid();	// grid_structors.hpp
+		void		_createGrid();	// grid_structors.hpp
+
 };
 
 using namespace std;
 
-// Constructor
-template <typename T>
-grid<T>::grid(int size_y, int size_x): _size_y(size_y), _size_x(size_x)
-{
-	_grid = new T*[size_y];
-	for (int i = 0; i < size_y; i++)
-		_grid[i] = new T[size_x]{};
-}
+#include "grid_structors.hpp"
 
-// Destructor
-template <typename T>
-grid<T>::~grid(void)
-{
-	cout << "grid:\tdestroying object\n";
-	for (int y = 0; y < _size_y; ++y)
-		delete[] _grid[y];
-	delete[] _grid;
-}
+#include "grid_getters.hpp"
 
-// Getters
-template <typename T>
-size_t	grid<T>::getSizeY()const
-{
-	return _size_y;
-}
+#include "grid_accessors.hpp"
 
-template <typename T>
-size_t	grid<T>::getSizeX()const
-{
-	return _size_x;
-}
+#include "grid_operators.hpp"
 
-// Accessors
-template <typename T>
-T &	grid<T>::at(size_t y, size_t x)const
-{
-	if (_outOfBounds(y, x))
-		_throwOutOfBounds();
-	return _grid[y][x];
-}
+#include "grid_inserters.hpp"
 
-template <typename T>
-T &	grid<T>::at(pair<int, int> coords)const
-{
-	return at(coords.first, coords.second);
-}
 
-// Operator overloads
-template <typename T>
-void	grid<T>::operator=(T other)
-{
-	this->insertAll(other);
-}
-
-// Inserters
-template <typename T>
-void	grid<T>::insert(T t, size_t y, size_t x)
-{
-	if (_outOfBounds(y, x))
-		_throwOutOfBounds();	
-	at(y, x) = t;
-}
-
-template <typename T>
-void	grid<T>::insert(T t, pair<int, int> p)
-{
-	insert(t, p.first, p.second);
-}
-
-template <typename T>
-void	grid<T>::insertRow(T t, size_t y)
-{
-	if (_outOfYBounds(y))
-		_throwOutOfBounds();
-	for (size_t x = 0; x < _size_x; ++x)
-		insert(t, y, x);
-}
-
-template <typename T>
-void	grid<T>::insertColumn(T t, size_t x)
-{
-	if (_outOfXBounds(x))
-		_throwOutOfBounds();
-	for (size_t y = 0; y < _size_y; ++y)
-		insert(t, y, x);
-}
-
-template <typename T>
-void	grid<T>::insertAll(T t)
-{
-	for (int y = 0; y < _size_y; ++y)
-		for (int x = 0; x < _size_x; ++x)
-			insert(t, y, x);
-}
-
-template <typename T>
-void	grid<T>::insertString(string str, size_t y)
-{
-	if (_outOfYBounds(y))
-		_throwOutOfBounds();
-	if (_outOfXBounds(str.size()))
-		cout <<  "WARNING:"  << "String is too long, some data will be lost" << endl;
-	for (int x = 0; x < (str.size() > _size_x? _size_x: str.size()); x++)
-		insert(str[x], y, x);
-	
-}
-
-// << operator
-template <typename T>
-ostream& operator<<(ostream & o, const grid<T> & g)
-{
-	size_t xSize = g.getSizeX();
-	size_t ySize = g.getSizeY();
-	for (int y = 0; y < ySize; ++y)
-	{
-		for (int x = 0; x < xSize; ++x)
-			cout << "[" << g.at(y, x) << "]";
-		cout << endl;
-	}
-	return o;
-}
-template <>
-inline ostream& operator<<(ostream & o, const grid<bool> & g)
-{
-	size_t xSize = g.getSizeX();
-	size_t ySize = g.getSizeY();
-	for (int y = 0; y < ySize; ++y)
-	{
-		for (int x = 0; x < xSize; ++x)
-		{
-			cout << "[" << (g.at(y, x) == true ? "\033[32;1m1" : "\033[31;1m0") << "\033[0m]";
-		}
-		cout << endl;
-	}
-	return o;
-}
-
-// Out of bounds checks
-template <typename T>
-bool	grid<T>::_outOfBounds(size_t y, size_t x) const
-{
-	return _outOfYBounds(y) || _outOfXBounds(x);
-}
-
-template <typename T>
-bool	grid<T>::_outOfXBounds(size_t x) const
-{
-	if (x >= _size_x)
-		return true;
-	return false;
-}
-
-template <typename T>
-bool	grid<T>::_outOfYBounds(size_t y) const
-{
-	if (y >= _size_y)
-		return true;
-	return false;
-}
-
-template <typename T>
-void	grid<T>::_throwOutOfBounds()const
-{
-	throw out_of_range("Given co-ordinates do no lie within the grid");
-}
+#include "grid_outOfBoundsChecks.hpp"
 
 #endif
 
