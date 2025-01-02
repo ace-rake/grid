@@ -78,10 +78,10 @@ class	grid
 
 		};
 
-		iterator	begin(){
+		iterator	begin()const{
 			return iterator(_grid, 0, 0, _size_x, _size_y);
 		}
-		iterator	end(){
+		iterator	end()const{
 			return iterator(_grid, 0, _size_y, _size_x, _size_y);
 		}
 
