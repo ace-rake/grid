@@ -40,6 +40,16 @@ std::ostream& operator<<(std::ostream & o, const grid<T> & g)
 	}
 	return o;
 }
+
+// Subscript operator
+template <typename T>
+T * &	grid<T>::operator[](int index) const
+{
+	if (_outOfYBounds(index))
+		_throwOutOfBounds();
+	return _grid[index];
+}
+
 template <>
 inline ostream& operator<<(ostream & o, const grid<bool> & g)
 {

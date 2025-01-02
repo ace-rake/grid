@@ -37,6 +37,7 @@ class	grid
 		// Operator overloads
 		void	operator=(T other);
 		void	operator=(const grid<T> & other);
+		T * &	operator[](int)const;
 
 		// Iterator
 		class iterator
