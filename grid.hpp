@@ -33,6 +33,9 @@ class	grid
 		void	insertAll(T);
 		void	insertString(std::string, size_t);
 
+		// Operator overloads
+		void	operator=(T other);
+
 		// Iterator
 		class iterator
 		{
@@ -143,6 +146,13 @@ template <typename T>
 T &	grid<T>::at(pair<int, int> coords)const
 {
 	return at(coords.first, coords.second);
+}
+
+// Operator overloads
+template <typename T>
+void	grid<T>::operator=(T other)
+{
+	this->insertAll(other);
 }
 
 // Inserters
