@@ -1,6 +1,7 @@
 #ifndef GRID_INSERTERS_HPP
 # define GRID_INSERTERS_HPP
 
+#include "grid.hpp"
 #include <cstddef>
 template <typename T>
 void	grid<T>::insert(T t, size_t y, size_t x)

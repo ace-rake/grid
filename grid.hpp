@@ -94,6 +94,9 @@ class	grid
 		T &	at(size_t, size_t)const;
 		grid<T>::iterator	search(T)const;
 
+		// Transformers
+		void	resize(size_t, size_t);
+
 	private:
 		T **		_grid;
 		atomic_bool	_isMalloced = false;
@@ -107,6 +110,7 @@ class	grid
 
 		void		_freeGrid();	// grid_structors.hpp
 		void		_createGrid();	// grid_structors.hpp
+		void		_deepCopy(grid<T> const &);// grid_structors.hpp
 
 };
 
@@ -122,8 +126,9 @@ using namespace std;
 
 #include "grid_inserters.hpp"
 
-
 #include "grid_outOfBoundsChecks.hpp"
+
+#include "grid_transformers.hpp"
 
 #endif
 

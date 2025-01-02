@@ -6,6 +6,7 @@
 #include "grid.hpp"
 #include <iostream>
 #include <ostream>
+#include <stdexcept>
 template <typename T>
 void	grid<T>::operator=(T other)
 {
@@ -15,13 +16,13 @@ void	grid<T>::operator=(T other)
 template <typename T>
 void	grid<T>::operator=(const grid<T> & other)
 {
-	_freeGrid();
-	_size_x = other.getSizeX();
-	_size_y = other.getSizeY();
-	_createGrid();
 	for (int y = 0; y < _size_y; y++)
 		for (int x = 0; x < _size_x; x++)
-			at(y, x) = other.at(y, x);
+		{
+			try{ at(y, x) = other.at(y, x);}
+			catch(std::out_of_range &e)
+			{continue ;}
+		}
 }
 
 
