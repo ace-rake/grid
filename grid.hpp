@@ -14,6 +14,9 @@ class	grid
 		// Constructor
 		grid	(size_t, size_t);
 
+		// Copy constructor
+		grid	(grid<T> & other);
+
 		// Destructor
 		~grid	(void);
 
