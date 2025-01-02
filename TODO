@@ -1,3 +1,14 @@
-find that returns all instances like smatch maybe
+iterator row through row
+iterator column through column
 
-simple iterators 
+operator[]
+
+transformations
+
+resize
+
+de/serialize
+
+comparison operators
+
+
