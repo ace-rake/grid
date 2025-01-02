@@ -92,6 +92,8 @@ class	grid
 		// Accessors
 		T &	at(std::pair<int, int>)const;
 		T &	at(size_t, size_t)const;
+		grid<T>::iterator	search(T)const;
+
 	private:
 		T **		_grid;
 		atomic_bool	_isMalloced = false;

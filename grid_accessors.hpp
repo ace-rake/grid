@@ -2,6 +2,7 @@
 # define GRID_ACCESSORS_HPP
 
 
+#include "grid.hpp"
 #include <cstddef>
 // Accessors
 template <typename T>
@@ -17,5 +18,13 @@ T &	grid<T>::at(pair<int, int> coords)const
 {
 	return at(coords.first, coords.second);
 }
-#endif
 
+template <typename T>
+typename grid<T>::iterator	grid<T>::search(T toSearch)const
+{
+	for (auto it = this->begin(); it != this->end(); it++)
+		if (*it == toSearch)
+			return it;
+	return this->end();
+}
+#endif
