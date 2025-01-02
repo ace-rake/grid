@@ -2,6 +2,7 @@
 # define GRID_HPP
 
 #include <cstddef>
+#include <stdatomic.h>
 #include <utility>
 #include <string>
 
@@ -90,8 +91,9 @@ class	grid
 		T &	at(size_t, size_t)const;
 	private:
 		T **		_grid;
-		size_t	_size_y;
-		size_t	_size_x;
+		atomic_bool	_isMalloced = false;
+		size_t		_size_y;
+		size_t		_size_x;
 
 		bool		_outOfBounds(size_t, size_t)const;
 		bool		_outOfXBounds(size_t)const;
