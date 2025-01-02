@@ -9,7 +9,7 @@
 template <typename T>
 void	grid<T>::operator=(T other)
 {
-	this->insertAll(other);
+	this->fill(other);
 }
 
 template <typename T>
