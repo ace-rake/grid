@@ -31,7 +31,7 @@ class	grid
 
 		void	insertRow(T, size_t);
 		void	insertColumn(T, size_t);
-		void	insertAll(T);
+		void	fill(T);
 		void	insertString(std::string, size_t);
 
 		// Operator overloads

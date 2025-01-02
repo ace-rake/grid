@@ -35,7 +35,7 @@ void	grid<T>::insertColumn(T t, size_t x)
 }
 
 template <typename T>
-void	grid<T>::insertAll(T t)
+void	grid<T>::fill(T t)
 {
 	for (int y = 0; y < _size_y; ++y)
 		for (int x = 0; x < _size_x; ++x)
