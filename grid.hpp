@@ -20,9 +20,6 @@ class	grid
 		size_t	getSizeY()const;
 		size_t	getSizeX()const;
 
-		// Accessors
-		T &	at(std::pair<int, int>)const;
-		T &	at(size_t, size_t)const;
 		
 		// Inserters
 		void	insert(T, size_t, size_t);
@@ -88,6 +85,9 @@ class	grid
 			return iterator(_grid, 0, _size_y, _size_x, _size_y);
 		}
 
+		// Accessors
+		T &	at(std::pair<int, int>)const;
+		T &	at(size_t, size_t)const;
 	private:
 		T **		_grid;
 		size_t	_size_y;
