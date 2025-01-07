@@ -2,7 +2,6 @@
 # define GRID_STRUCTORS_HPP
 
 // Constructor
-#include "grid.hpp"
 #include <cstddef>
 template <typename T>
 grid<T>::grid(size_t size_y, size_t size_x): _size_y(size_y), _size_x(size_x)

@@ -1,8 +1,7 @@
 #ifndef GRID_TRANSFORMERS_HPP
 # define GRID_TRANSFORMERS_HPP
 
-#include "grid.hpp"
-
+#include <cstddef>
 template <typename T>
 void	grid<T>::resize(size_t newY, size_t newX)
 {

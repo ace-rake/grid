@@ -2,9 +2,8 @@
 # define GRID_ACCESSORS_HPP
 
 
-#include "grid.hpp"
-#include <cstddef>
 // Accessors
+#include <cstddef>
 template <typename T>
 T &	grid<T>::at(size_t y, size_t x)const
 {

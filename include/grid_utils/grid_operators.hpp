@@ -3,10 +3,8 @@
 
 
 // Operator overloads
-#include "grid.hpp"
 #include <iostream>
 #include <ostream>
-#include <stdexcept>
 template <typename T>
 void	grid<T>::operator=(T other)
 {

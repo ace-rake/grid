@@ -2,7 +2,6 @@
 # define GRID_HPP
 
 #include <cstddef>
-#include <stdatomic.h>
 #include <utility>
 #include <string>
 
@@ -103,7 +102,7 @@ class	grid
 
 	private:
 		T **		_grid;
-		atomic_bool	_isMalloced = false;
+		bool	_isMalloced = false;
 		size_t		_size_y;
 		size_t		_size_x;
 
@@ -120,19 +119,19 @@ class	grid
 
 using namespace std;
 
-#include "grid_structors.hpp"
+#include "../grid_utils/grid_structors.hpp"
 
-#include "grid_getters.hpp"
+#include "../grid_utils/grid_getters.hpp"
 
-#include "grid_accessors.hpp"
+#include "../grid_utils/grid_accessors.hpp"
 
-#include "grid_operators.hpp"
+#include "../grid_utils/grid_operators.hpp"
 
-#include "grid_inserters.hpp"
+#include "../grid_utils/grid_inserters.hpp"
 
-#include "grid_outOfBoundsChecks.hpp"
+#include "../grid_utils/grid_outOfBoundsChecks.hpp"
 
-#include "grid_transformers.hpp"
+#include "../grid_utils/grid_transformers.hpp"
 
 #endif
 
