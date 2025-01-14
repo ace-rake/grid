@@ -14,6 +14,8 @@ void	grid<T>::operator=(T other)
 template <typename T>
 void	grid<T>::operator=(const grid<T> & other)
 {
+	if (!other.isMalloced())
+		return ;
 	for (int y = 0; y < _size_y; y++)
 		for (int x = 0; x < _size_x; x++)
 		{
