@@ -22,12 +22,13 @@ class	grid
 		// Getters
 		size_t	getSizeY()const;
 		size_t	getSizeX()const;
+		T &	get(int, int)const;
+		bool	isMalloced()const;
 
 		
 		// Inserters
 		void	insert(T, size_t, size_t);
 		void	insert(T, std::pair<int, int>);
-
 		void	insertRow(T, size_t);
 		void	insertColumn(T, size_t);
 		void	fill(T);

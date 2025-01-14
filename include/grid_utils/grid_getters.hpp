@@ -15,5 +15,16 @@ size_t	grid<T>::getSizeX()const
 	return _size_x;
 }
 
-#endif
+template <typename T>
+T&	grid<T>::get(int y, int x)const
+{
+	return _grid[y][x];
+}
 
+template <typename T>
+bool	grid<T>::isMalloced()const
+{
+	return _isMalloced;
+}
+
+#endif
